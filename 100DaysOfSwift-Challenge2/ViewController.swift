@@ -13,10 +13,27 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "Shopping list"
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewItem))
     }
     
     @objc func addNewItem() {
+        let alertController = UIAlertController(title: "Register a new item", message: nil, preferredStyle: .alert)
+        alertController.addTextField()
+        
+        let submitAction = UIAlertAction(title: "Submit", style: .default) { [weak self, weak alertController] _ in
+            guard let newItem = alertController?.textFields?[0].text else { return }
+            
+            self?.submit(newItem)
+        }
+        
+        alertController.addAction(submitAction)
+        
+        present(alertController, animated: true)
+    }
+    
+    func submit(_ newItem: String) {
         // faz algo
     }
     
