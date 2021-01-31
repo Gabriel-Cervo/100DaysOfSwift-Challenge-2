@@ -34,7 +34,11 @@ class ViewController: UITableViewController {
     }
     
     func submit(_ newItem: String) {
-        // faz algo
+        shoppingList.insert(newItem, at: 0)
+        
+        let indexPath = IndexPath(row: 0, section: 0)
+        
+        tableView.insertRows(at: [indexPath], with: .automatic)
     }
     
     //MARK: Table View Controller methods
